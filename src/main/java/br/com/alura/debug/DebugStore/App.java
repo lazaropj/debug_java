@@ -23,10 +23,11 @@ public class App {
 	private static BigDecimal calcularPrecoFinal(CarrinhoCompra carrinhoCompra, List<Produto> produtosInformatica) {
 		BigDecimal valorFinalDaCompra = new BigDecimal(0);
 		for (Produto produto : produtosInformatica) {
-			BigDecimal preco = produto.getPreco();
+			BigDecimal precoDoProduto = produto.getPreco();
 			double porcentagemDesconto = carrinhoCompra.getFormaPagamento().getPorcentagemDesconto();
-			BigDecimal valorComDesconto = preco.multiply(new BigDecimal(porcentagemDesconto)).divide(new BigDecimal("100"));
-			valorFinalDaCompra = valorFinalDaCompra.add(valorComDesconto);
+			BigDecimal valorDoDesconto = precoDoProduto.multiply(new BigDecimal(porcentagemDesconto)).divide(new BigDecimal("100"));
+			BigDecimal precoProdutoComDesconto = precoDoProduto.subtract(valorDoDesconto);
+			valorFinalDaCompra = valorFinalDaCompra.add(precoProdutoComDesconto);
 		}
 		return valorFinalDaCompra;
 		
