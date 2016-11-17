@@ -1,4 +1,4 @@
-package br.com.alura.debug.DebugStore.modelo;
+package br.com.alura.debug.debugStore.modelo;
 
 public class Categoria {
 	
@@ -15,12 +15,5 @@ public class Categoria {
 		this.porcentagemDesconto = porcentagemDesconto;
 	}
 
-	public String getDescricao() {
-		return descricao;
-	}
-
-	public Double getPorcentagemDesconto() {
-		return porcentagemDesconto;
-	}
 
 }

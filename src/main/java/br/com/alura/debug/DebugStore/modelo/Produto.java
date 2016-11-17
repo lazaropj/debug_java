@@ -1,4 +1,4 @@
-package br.com.alura.debug.DebugStore.modelo;
+package br.com.alura.debug.debugStore.modelo;
 
 import java.math.BigDecimal;
 
@@ -9,30 +9,16 @@ public class Produto {
 	private BigDecimal preco;
 	
 	private Categoria categoria;
-
-	public String getDescricao() {
-		return descricao;
-	}
-
-	public void setDescricao(String descricao) {
+	
+	public Produto(String descricao, BigDecimal preco, Categoria categoria) {
 		this.descricao = descricao;
+		this.preco = preco;
+		this.categoria = categoria;
 	}
 
 	public BigDecimal getPreco() {
 		return preco;
 	}
 
-	public void setPreco(BigDecimal preco) {
-		this.preco = preco;
-	}
-
-	public Categoria getCategoria() {
-		return categoria;
-	}
-
-	public void setCategoria(Categoria categoria) {
-		this.categoria = categoria;
-	}
-	
 	
 }

@@ -1,4 +1,4 @@
-package br.com.alura.debug.DebugStore.modelo;
+package br.com.alura.debug.debugStore.modelo;
 
 public enum FormaPagamento {
 	

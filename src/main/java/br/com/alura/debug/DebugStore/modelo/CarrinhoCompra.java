@@ -1,4 +1,4 @@
-package br.com.alura.debug.DebugStore.modelo;
+package br.com.alura.debug.debugStore.modelo;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -14,47 +14,35 @@ public class CarrinhoCompra {
 	private String nomeCliente;
 	
 	private FormaPagamento formaPagamento;
-
 	
-
-	public List<Produto> getProdutos() {
-		return produtos;
-	}
-
-	public void setProdutos(List<Produto> produtos) {
-		this.produtos = produtos;
-	}
-
-	public BigDecimal getPrecoSemDesconto() {
-		return precoSemDesconto;
-	}
-
-	public void setPrecoSemDesconto(BigDecimal precoSemDesconto) {
-		this.precoSemDesconto = precoSemDesconto;
-	}
-
-	public BigDecimal getPrecoComDesconto() {
-		return precoComDesconto;
-	}
-
-	public void setPrecoComDesconto(BigDecimal precoComDesconto) {
-		this.precoComDesconto = precoComDesconto;
-	}
-
-	public String getNomeCliente() {
-		return nomeCliente;
-	}
-
-	public void setNomeCliente(String nomeCliente) {
-		this.nomeCliente = nomeCliente;
+	public CarrinhoCompra(FormaPagamento formaPagamento) {
+		this.formaPagamento = formaPagamento;
 	}
 	
 	public FormaPagamento getFormaPagamento() {
 		return formaPagamento;
 	}
 
-	public void setFormaPagamento(FormaPagamento formaPagamento) {
-		this.formaPagamento = formaPagamento;
+
+	public BigDecimal calcularPrecoFinal(List<Produto> produtos) {
+		/*BigDecimal valorFinalDaCompra = new BigDecimal(0);
+		for (Produto produto : produtosInformatica) {
+			BigDecimal precoDoProduto = produto.getPreco();
+			double porcentagemDesconto = carrinhoCompra.getFormaPagamento().getPorcentagemDesconto();
+			BigDecimal valorDoDesconto = precoDoProduto.multiply(new BigDecimal(porcentagemDesconto)).divide(new BigDecimal("100"));
+			BigDecimal precoProdutoComDesconto = precoDoProduto.subtract(valorDoDesconto);
+			valorFinalDaCompra = valorFinalDaCompra.add(precoProdutoComDesconto);
+		}
+		return valorFinalDaCompra;*/
+		BigDecimal valorFinal = BigDecimal.ZERO;
+		for (Produto produto : produtos) {
+			BigDecimal preco = produto.getPreco();
+			double porcentagemDesconto = this.getFormaPagamento().getPorcentagemDesconto();
+			BigDecimal valorComDesconto = preco.multiply(new BigDecimal(porcentagemDesconto)).divide(new BigDecimal("100"));
+			valorFinal = valorFinal.add(valorComDesconto);
+		}
+		return valorFinal;
+		
 	}
 	
 }
