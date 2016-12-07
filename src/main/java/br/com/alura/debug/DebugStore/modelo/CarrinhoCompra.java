@@ -22,24 +22,20 @@ public class CarrinhoCompra {
 	public FormaPagamento getFormaPagamento() {
 		return formaPagamento;
 	}
-
-
+	
 	public BigDecimal calcularPrecoFinal(List<Produto> produtos) {
-		/*BigDecimal valorFinalDaCompra = new BigDecimal(0);
-		for (Produto produto : produtosInformatica) {
-			BigDecimal precoDoProduto = produto.getPreco();
-			double porcentagemDesconto = carrinhoCompra.getFormaPagamento().getPorcentagemDesconto();
-			BigDecimal valorDoDesconto = precoDoProduto.multiply(new BigDecimal(porcentagemDesconto)).divide(new BigDecimal("100"));
-			BigDecimal precoProdutoComDesconto = precoDoProduto.subtract(valorDoDesconto);
-			valorFinalDaCompra = valorFinalDaCompra.add(precoProdutoComDesconto);
-		}
-		return valorFinalDaCompra;*/
 		BigDecimal valorFinal = BigDecimal.ZERO;
 		for (Produto produto : produtos) {
 			BigDecimal preco = produto.getPreco();
 			double porcentagemDesconto = this.getFormaPagamento().getPorcentagemDesconto();
-			BigDecimal valorComDesconto = preco.multiply(new BigDecimal(porcentagemDesconto)).divide(new BigDecimal("100"));
-			valorFinal = valorFinal.add(valorComDesconto);
+			BigDecimal valorDoDesconto = preco.multiply(new BigDecimal(porcentagemDesconto)).divide(new BigDecimal("100.00"));
+			BigDecimal precoProdutoComDesconto = preco.subtract(valorDoDesconto);
+			//Aula 2
+			if (precoProdutoComDesconto.compareTo(new BigDecimal("700.00")) == 1 ){
+				System.out.println("O produto " + produto.getDescricao() + " ganhou mais R$20,00 de desconto");
+				precoProdutoComDesconto = precoProdutoComDesconto.subtract(new BigDecimal("20.00"));
+			}
+			valorFinal = valorFinal.add(precoProdutoComDesconto);
 		}
 		return valorFinal;
 		
